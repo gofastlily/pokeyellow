@@ -1,6 +1,6 @@
 #!/usr/bin/env nix-shell 
 #! nix-shell -i bash --pure
-#! nix-shell -p bash cacert gnumake gcc git rgbds which haskellPackages.cryptohash-sha1
+#! nix-shell -p bash cacert gnumake gcc git rgbds gawk which haskellPackages.cryptohash-sha1
 
 # The -c flag runs make clean
 if [ "$1" == "-c" ]; then
