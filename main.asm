@@ -6,7 +6,6 @@ INCLUDE "engine/movie/title.asm"
 INCLUDE "engine/pokemon/load_mon_data.asm"
 INCLUDE "data/items/prices.asm"
 INCLUDE "data/items/names.asm"
-INCLUDE "data/text/unused_names.asm"
 INCLUDE "engine/gfx/sprite_oam.asm"
 INCLUDE "engine/link/print_waiting_text.asm"
 INCLUDE "engine/overworld/sprite_collisions.asm"
@@ -352,7 +351,6 @@ INCLUDE "engine/overworld/specific_script_flags.asm"
 
 SECTION "Try Pikachu Movement", ROMX
 
-INCLUDE "engine/overworld/unused_load_missable_object_data.asm"
 INCLUDE "engine/events/try_pikachu_movement.asm"
 
 
