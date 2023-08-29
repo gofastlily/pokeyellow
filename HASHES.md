@@ -1,8 +1,8 @@
 ```
-cc7d03262ebfaf2f06772c1a480c7d9d5f4a38e1  pokeyellow.gbc
-0bbaabf12488a973b6fec211e4f6c12f92928f8c  pokeyellow.sym
-b098d163d040be4f2e0f9cb1c46ffad027a346c2  pokeyellow.map
-d44e96eddfbdad633cbe4e6e64915e9e198974b0  pokeyellow_debug.gbc
-8027d577b32b80133cf8f43bf277710488663d1c  pokeyellow_debug.sym
-7be79e7b05ac0821b63feef194e46fe6b91caa27  pokeyellow_debug.map
+b5a987c5dd9328661b01bb0a7179f993c19e71c5  pokeyellow.gbc
+978a4e98d9ae99cff44093285b285bf46db73f9f  pokeyellow.sym
+53503ef30e00a354ee82f1984c3f2191becd3108  pokeyellow.map
+7ca3a264ad8cffde6b45b332f74ce6d2565353ea  pokeyellow_debug.gbc
+254f61dd39268e75a3aa1cec156032d34875775e  pokeyellow_debug.sym
+723d2bc376890de02c56c5bf4ac178344ad55459  pokeyellow_debug.map
 ```
