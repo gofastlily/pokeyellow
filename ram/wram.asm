@@ -1934,10 +1934,10 @@ wRivalName:: ds NAME_LENGTH
 ;	01: Earphone1
 ;	10: Earphone2
 ;	11: Earphone3
-; bits 2-0 = text speed (number of frames to delay after printing a letter)
-; 1: Fast
-; 3: Medium
-; 5: Slow
+; bits 1-0 = text speed (number of frames to delay after printing a letter)
+; 01: Fast
+; 10: Medium
+; 11: Slow
 wOptions:: db
 
 wObtainedBadges:: flag_array NUM_BADGES
