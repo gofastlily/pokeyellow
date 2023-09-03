@@ -41,7 +41,8 @@ EnterMap::
 	ld [wJoyIgnore], a
 
 OverworldLoop::
-	call DelayFrame
+	call Check60fps
+	call z, DelayFrame
 OverworldLoopLessDelay::
 	call DelayFrame
 	call IsSurfingPikachuInParty
@@ -226,7 +227,11 @@ OverworldLoopLessDelay::
 	jp c, OverworldLoop
 
 .noCollision
-	ld a, $08
+	call Check60fps
+	ld a, $8
+	jr z, .pc60fpsCounter
+	ld a, $10
+.pc60fpsCounter
 	ld [wWalkCounter], a
 	callfar Func_fcc08
 	jr .moveAhead2
@@ -2331,4 +2336,25 @@ LoadDestinationWarpPosition::
 	pop af
 	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
+	ret
+
+
+Check60fps::
+	push bc
+	ld c, a
+	ld a, [wOptions]
+	bit BIT_60FPS, a
+	ld a, 0
+    jr nz, .doneInvertZeroFlag
+    inc a
+.doneInvertZeroFlag
+    and a
+	ld a, c
+	pop bc
+	ret
+
+
+Do60fps::
+	ld a, [wSpritePlayerStateData2FramerateStatus]
+	cp 0
 	ret

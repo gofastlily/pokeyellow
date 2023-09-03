@@ -123,7 +123,7 @@ wSpriteStateData2::
 ; - 7: (?) (set to $80 when in grass, else $0; may be used to draw grass above the sprite)
 ; - 8: delay until next movement (counted downwards, movement status is set to ready if reached 0)
 ; - 9: original facing direction (backed up by DisplayTextIDInit, restored by CloseTextDisplay)
-; - A
+; - A: 60fps tracker
 ; - B
 ; - C
 ; - D: picture ID
@@ -1934,6 +1934,9 @@ wRivalName:: ds NAME_LENGTH
 ;	01: Earphone1
 ;	10: Earphone2
 ;	11: Earphone3
+; bit 3 = 60fps overworld
+; 0: On
+; 1: Off
 ; bits 2-0 = text speed (number of frames to delay after printing a letter)
 ; 1: Fast
 ; 3: Medium

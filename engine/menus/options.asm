@@ -36,7 +36,7 @@ OptionMenuJumpTable:
 	dw OptionsMenu_BattleStyle
 	dw OptionsMenu_SpeakerSettings
 	dw OptionsMenu_GBPrinterBrightness
-	dw OptionsMenu_Dummy
+	dw OptionsMenu_Overworld60fps
 	dw OptionsMenu_Dummy
 	dw OptionsMenu_Cancel
 
@@ -334,6 +334,44 @@ Func_41e7b:
 	lb de, $60, $0
 	ret
 
+
+OptionsMenu_Overworld60fps:
+	ldh a, [hJoy5]
+	and D_RIGHT | D_LEFT
+	jr nz, .asm_41d33a
+	ld a, [wOptions]
+	and $8  ; mask other bits
+	jr .asm_41d3ba
+.asm_41d33a
+	ld a, [wOptions]
+	xor $8  ; mask other bits
+	ld [wOptions], a
+.asm_41d3ba
+	ld bc, $0
+	swap a
+	sla a
+	rl c
+	ld hl, Overworld60fpsOptionStringsPointerTable
+	add hl, bc
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	hlcoord 14, 12
+	call PlaceString
+	and a
+	ret
+
+Overworld60fpsOptionStringsPointerTable:
+	dw Overworld60fpsOnText
+	dw Overworld60fpsOffText
+
+Overworld60fpsOnText:
+	db "ON @"
+Overworld60fpsOffText:
+	db "OFF@"
+
+
 OptionsMenu_Dummy:
 	and a
 	ret
@@ -365,7 +403,7 @@ OptionsControl:
 	scf
 	ret
 .doNotWrapAround
-	cp $4
+	cp $5
 	jr c, .regularIncrement
 	ld [hl], $6
 .regularIncrement
@@ -376,7 +414,7 @@ OptionsControl:
 	ld a, [hl]
 	cp $7
 	jr nz, .doNotMoveCursorToPrintOption
-	ld [hl], $4
+	ld [hl], $5
 	scf
 	ret
 .doNotMoveCursorToPrintOption
@@ -416,7 +454,7 @@ InitOptionsMenu:
 	call PlaceString
 	xor a
 	ld [wOptionsCursorLocation], a
-	ld c, 5 ; the number of options to loop through
+	ld c, 6 ; the number of options to loop through
 .loop
 	push bc
 	call GetOptionPointer ; updates the next option
@@ -433,11 +471,12 @@ InitOptionsMenu:
 	ret
 
 AllOptionsText:
-	db "TEXT SPEED :"
+	db   "TEXT SPEED :"
 	next "ANIMATION  :"
 	next "BATTLESTYLE:"
 	next "SOUND:"
-	next "PRINT:@"
+	next "PRINT:"
+	next "60FPS WORLD:@"
 
 OptionMenuCancelText:
 	db "CANCEL@"

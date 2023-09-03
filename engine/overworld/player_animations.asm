@@ -498,6 +498,7 @@ RedFishingTiles:
 _HandleMidJump::
 	ld a, [wPlayerJumpingYScreenCoordsIndex]
 	ld c, a
+	call Ledge60fps
 	inc a
 	cp $10
 	jr nc, .finishedJump
@@ -530,3 +531,11 @@ _HandleMidJump::
 PlayerJumpingYScreenCoords:
 ; Sequence of y screen coordinates for player's sprite when jumping over a ledge.
 	db $38, $36, $34, $32, $31, $30, $30, $30, $31, $32, $33, $34, $36, $38, $3C, $3C
+
+
+Ledge60fps:
+	push hl
+	ld hl, wSpritePlayerStateData2FramerateStatus
+	sub [hl]
+	pop hl
+	ret

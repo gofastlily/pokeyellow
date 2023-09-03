@@ -346,6 +346,10 @@ UpdateSpriteMovementDelay:
 	ld [hl], $0
 	jr .moving
 .tickMoveCounter
+	ld a, [hl]
+	call Sprite60fps
+	add b
+	ld [hl], a
 	dec [hl]                ; x#SPRITESTATEDATA2_MOVEMENTDELAY
 	jr nz, notYetMoving
 .moving
@@ -1071,4 +1075,25 @@ Func_5357:
 	inc l
 	ld c, [hl]
 	ld [hl], a
+	ret
+
+Sprite60fps:
+	push hl
+	push af
+	ld hl, wSpritePlayerStateData2FramerateStatus
+	ld a, [hCurrentSpriteOffset]
+	add l
+	ld l, a
+	call Check60fps
+	ld a, [hl]
+	jr z, .is60fps
+	xor a  ; xor a with itself to clear it to zero if 60FPS mode is inactive
+	jr .end
+.is60fps
+	xor 1  ; xor a with 1 to toggle it between 0 or 1 if 60FPS mode is active
+.end
+	ld [wSpritePlayerStateData2FramerateStatus], a  ; update C2xA with the new toggled value in a
+	ld b, a  ; store the new toggled value in b
+	pop af
+	pop hl
 	ret
