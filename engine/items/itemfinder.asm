@@ -40,6 +40,7 @@ HiddenItemNear:
 	add 5
 	cp e
 	jr c, .loop
+	call DoItemFinderFacing
 	scf
 	ret
 
@@ -50,3 +51,50 @@ Sub5ClampTo0:
 	ret c
 	xor a
 	ret
+
+
+DoItemFinderFacing:
+; input: d = hidden item's y coord, e = hidden item's x coord
+    ld bc, 0
+
+; e = how far away in x direction the item is
+    ld a, [wXCoord]
+    sub e
+    jr nc, .got_dx
+    cpl
+    inc a
+    inc c
+.got_dx
+    ld e, a
+
+; a = how far away in y direction the item is
+    ld a, [wYCoord] ; player's y coord
+    sub d ; subtract hidden item's y value
+    jr nc, .got_dy
+    cpl
+    inc a
+    inc b
+.got_dy
+
+    sub e
+    jr nc, .up_or_down
+; left or right
+    ld a, c
+    and a
+    ld a, PLAYER_DIR_LEFT
+    jr z, .done
+    assert PLAYER_DIR_LEFT >> 1 == PLAYER_DIR_RIGHT
+    rrca ; ld a, PLAYER_DIR_RIGHT
+    jr .done
+
+.up_or_down
+    ld a, b
+    and a
+    ld a, PLAYER_DIR_UP
+    jr z, .done
+    assert PLAYER_DIR_UP >> 1 == PLAYER_DIR_DOWN
+    rrca ; ld a, PLAYER_DIR_DOWN
+    ; fallthrough
+.done
+    ld [wPlayerMovingDirection], a
+    ret
