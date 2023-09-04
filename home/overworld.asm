@@ -1801,8 +1801,7 @@ LoadMapHeader::
 	farcall MarkTownVisitedAndLoadMissableObjects
 	jr asm_0dbd
 
-Func_0db5:: ; XXX
-	farcall LoadMissableObjectData
+
 asm_0dbd:
 	ld a, [wCurMapTileset]
 	ld [wUnusedD119], a
