@@ -345,6 +345,8 @@ OaksLabRivalStartBattleScript:
 	ld a, OAKSLAB_RIVAL
 	ld [wSpriteIndex], a
 	call GetSpritePosition1
+	ld a, 1
+	ld [wIsTrainerBattle], a
 	ld a, OPP_RIVAL1
 	ld [wCurOpponent], a
 	ld a, $1
@@ -364,6 +366,9 @@ OaksLabRivalStartBattleScript:
 	ret
 
 OaksLabRivalEndBattleScript:
+	xor a
+	ld [wIsTrainerBattle], a
+
 	ld a, PAD_BUTTONS | PAD_CTRL_PAD
 	ld [wJoyIgnore], a
 

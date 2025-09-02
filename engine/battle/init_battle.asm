@@ -30,9 +30,11 @@ InitBattleCommon:
 	push af
 	res BIT_TEXT_DELAY, [hl] ; no delay
 	call InitBattleVariables
+	ld a, [wIsTrainerBattle]
+	and a
+	jp z, InitWildBattle
 	ld a, [wEnemyMonSpecies2]
 	sub OPP_ID_OFFSET
-	jp c, InitWildBattle
 	ld [wTrainerClass], a
 	call GetTrainerInformation
 	callfar ReadTrainer

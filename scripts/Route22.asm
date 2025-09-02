@@ -27,6 +27,8 @@ Route22Script_50ed6:
 	ld [wCurOpponent], a
 	ld a, $2
 	ld [wTrainerNo], a
+	ld a, 1
+	ld [wIsTrainerBattle], a
 	ret
 
 Route22Script_50ee1:
@@ -35,6 +37,8 @@ Route22Script_50ee1:
 	ld a, [wRivalStarter]
 	add 7
 	ld [wTrainerNo], a
+	ld a, 1
+	ld [wIsTrainerBattle], a
 	ret
 
 Route22MoveRivalRightScript:
@@ -148,6 +152,8 @@ Route22Rival1AfterBattleScript:
 	ld a, [wIsInBattle]
 	cp $ff
 	jp z, Route22SetDefaultScript
+	xor a
+	ld [wIsTrainerBattle], a
 	ld a, [wRivalStarter]
 	cp RIVAL_STARTER_FLAREON
 	jr nz, .keep_rival_starter
@@ -302,8 +308,15 @@ Route22Rival2VictoryText:
 Route22Rival2AfterBattleScript:
 	ld a, [wIsInBattle]
 	cp $ff
+<<<<<<< HEAD
 	jp z, Route22SetDefaultScript
 	ld a, ROUTE22_RIVAL2
+=======
+	jp z, Route22Script_50ece
+	xor a
+	ld [wIsTrainerBattle], a
+	ld a, $2
+>>>>>>> d12076b0 (Trainers are not Pokémon)
 	ldh [hSpriteIndex], a
 	ld a, [wSavedCoordIndex]
 	cp 1 ; index of second, lower entry in Route22DefaultScript.Route22RivalBattleCoords

@@ -24,6 +24,8 @@ CeruleanCityRocketDefeatedScript:
 	ld a, [wIsInBattle]
 	cp $ff
 	jp z, CeruleanCityClearScripts
+	xor a
+	ld [wIsTrainerBattle], a
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a
 	SetEvent EVENT_BEAT_CERULEAN_ROCKET_THIEF
@@ -141,6 +143,8 @@ CeruleanCityRivalBattleScript:
 	ld [wCurOpponent], a
 	ld a, 3
 	ld [wTrainerNo], a
+	ld a, 1
+	ld [wIsTrainerBattle], a
 	xor a
 	ldh [hJoyHeld], a
 	call CeruleanCityFaceRivalScript
@@ -152,6 +156,8 @@ CeruleanCityRivalDefeatedScript:
 	ld a, [wIsInBattle]
 	cp $ff
 	jp z, CeruleanCityClearScripts
+	xor a
+	ld [wIsTrainerBattle], a
 	call CeruleanCityFaceRivalScript
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a

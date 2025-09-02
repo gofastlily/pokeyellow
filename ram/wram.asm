@@ -1874,7 +1874,9 @@ wPseudoItemID:: db
 
 wUnusedAlreadyOwnedFlag:: db
 
-	ds 2
+; Used to separate Trainers from Pokémon
+wIsTrainerBattle:: db
+wWasTrainerBattle:: db
 
 wEvoStoneItemID:: db
 

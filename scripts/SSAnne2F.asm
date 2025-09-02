@@ -99,6 +99,7 @@ SSAnne2FRivalStartBattleScript:
 	ld [wCurOpponent], a
 	ld a, $1
 	ld [wTrainerNo], a
+	ld [wIsTrainerBattle], a
 	call SSAnne2FSetFacingDirectionScript
 	ld a, SCRIPT_SSANNE2F_RIVAL_AFTER_BATTLE
 	ld [wSSAnne2FCurScript], a
@@ -108,6 +109,8 @@ SSAnne2FRivalAfterBattleScript:
 	ld a, [wIsInBattle]
 	cp $ff
 	jp z, SSAnne2FResetScripts
+	xor a
+	ld [wIsTrainerBattle], a
 	call SSAnne2FSetFacingDirectionScript
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a
