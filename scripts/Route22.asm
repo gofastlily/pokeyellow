@@ -308,15 +308,10 @@ Route22Rival2VictoryText:
 Route22Rival2AfterBattleScript:
 	ld a, [wIsInBattle]
 	cp $ff
-<<<<<<< HEAD
 	jp z, Route22SetDefaultScript
-	ld a, ROUTE22_RIVAL2
-=======
-	jp z, Route22Script_50ece
 	xor a
 	ld [wIsTrainerBattle], a
-	ld a, $2
->>>>>>> d12076b0 (Trainers are not Pokémon)
+	ld a, ROUTE22_RIVAL2
 	ldh [hSpriteIndex], a
 	ld a, [wSavedCoordIndex]
 	cp 1 ; index of second, lower entry in Route22DefaultScript.Route22RivalBattleCoords

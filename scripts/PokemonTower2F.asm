@@ -153,12 +153,8 @@ PokemonTower2FRivalText:
 	add $1
 	ld [wTrainerNo], a
 
-<<<<<<< HEAD
 	ld a, SCRIPT_POKEMONTOWER2F_DEFEATED_RIVAL
-=======
-	ld a, $1
 	ld [wIsTrainerBattle], a
->>>>>>> d12076b0 (Trainers are not Pokémon)
 	ld [wPokemonTower2FCurScript], a
 	ld [wCurMapScript], a
 .text_script_end
