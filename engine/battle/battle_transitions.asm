@@ -92,7 +92,7 @@ GetBattleTransitionID_WildOrTrainer:
 	ld a, [wIsTrainerBattle]
 	and a
 	jr nz, .trainer
-	res BIT_TRAINER_BATTLE_TRANSITION0, c
+	res BIT_TRAINER_BATTLE_TRANSITION, c
 	ret
 .trainer
 	set BIT_TRAINER_BATTLE_TRANSITION, c
